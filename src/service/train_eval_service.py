@@ -82,7 +82,6 @@ class TrainEvalService:
                 self.model = pickle.load(file)
         validation_prediction = list(self.model.predict(predict_data))
         self.log.info("Prediction: {}".format(validation_prediction))
-        self.log.info("Real label: {}".format(predict_data))
         return validation_prediction
 
     def evaluate(self, validation_prediction = None):
