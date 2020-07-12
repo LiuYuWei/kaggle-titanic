@@ -47,6 +47,9 @@ $ python main.py --mode train_eval --model ada
 
 ## Step 5: Run the fasiapi prediction service
 $ python main.py --mode serving
+
+- You can use the service in 127.0.0.1:8000
+- api spec swagger website: 127.0.0.1:8000/docs
 ```
 </details>
 

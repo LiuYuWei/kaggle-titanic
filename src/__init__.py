@@ -28,14 +28,6 @@ def create_app():
     
     @app.post("/prediction", response_model=Result)
     def prediction(prediction: Prediction):
-        # data = {}
-        # data['Pclass'] = [prediction.Pclass]
-        # data['Sex'] = [prediction.Sex]
-        # data['Age'] = [prediction.Age]
-        # data['Fare'] = [prediction.Fare]
-        # data['Cabin'] = [prediction.Cabin]
-        # data['Embarked'] = [prediction.Embarked]
-        # data['Title'] = [prediction.Title]
         data = prediction.dict()
         for index, value in zip(data.keys(), data.values()):
             data[index] = [value]
