@@ -44,6 +44,9 @@ $ python main.py --mode train_eval --model rf
 $ python main.py --mode train_eval --model gnb
 $ python main.py --mode train_eval --model gb
 $ python main.py --mode train_eval --model ada
+
+## Step 5: Run the fasiapi prediction service
+$ python main.py --mode serving
 ```
 </details>
 

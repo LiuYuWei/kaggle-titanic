@@ -17,3 +17,6 @@ knn:
 
 rf:
   n_estimators: 13
+
+predict:
+  model_path: "training_model_svm.pkl"

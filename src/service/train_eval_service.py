@@ -72,12 +72,17 @@ class TrainEvalService:
     def model_fit(self):
         self.model.fit(self.data['x_train'], self.data['y_train'])
     
-    def prediction(self, predict_data = None):
+    def prediction(self, save_file_path = None, predict_data = None):
         if predict_data is None:
             predict_data = self.data['x_valid']
+        if self.model is None:
+            if save_file_path is None:
+                save_file_path = self.config['load_to']['save_file_path']
+            with open("{}/model/{}".format(save_file_path, self.config['predict']['model_path']), 'rb') as file:
+                self.model = pickle.load(file)
         validation_prediction = list(self.model.predict(predict_data))
         self.log.info("Prediction: {}".format(validation_prediction))
-        self.log.info("Real label: {}".format(self.data['y_valid']))
+        self.log.info("Real label: {}".format(predict_data))
         return validation_prediction
 
     def evaluate(self, validation_prediction = None):
