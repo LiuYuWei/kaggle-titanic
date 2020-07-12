@@ -18,6 +18,7 @@ class TrainEvalApp:
         self.train_test_split()
         self.training_model(model)
         self.evaluate()
+        self.finish(model)
 
     def read_data(self):
         self.train_eval_service.read_preprocess_data()
@@ -50,5 +51,5 @@ class TrainEvalApp:
             validation_prediction = self.train_eval_service.prediction()
             self.train_eval_service.evaluate(validation_prediction)
 
-    def finish(self):
-        pass
+    def finish(self, model):
+        self.train_eval_service.model_save(model)

@@ -84,3 +84,10 @@ class TrainEvalService:
         if validation_prediction is None:
             validation_prediction = self.prediction()
         self.log.info("Evaluation report:\n{}".format(classification_report(self.data['y_valid'], validation_prediction)))
+    
+    def model_save(self, model, save_file_path=None):
+        if save_file_path is None:
+            save_file_path = self.config['load_to']['save_file_path']
+        file = open("{}/model/training_model_{}.pkl".format(save_file_path, model), 'wb')
+        pickle.dump(self.model, file)
+        file.close()
