@@ -3,9 +3,6 @@ FROM ubuntu:18.04
 #Setting timezone
 ENV TZ Asia/Taipei
 
-#Add Python lib version 
-ADD ./requirements.txt /root/tmp/requirements.txt
-
 #Construct the home directory and work directory
 RUN addgroup --gid 1001 app 
 RUN useradd -u 1001 \
@@ -25,6 +22,8 @@ RUN apt-get update && \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
+#Add Python lib version 
+ADD ./requirements.txt /root/tmp/requirements.txt
 RUN pip3 --no-cache-dir install -r /root/tmp/requirements.txt
 
 #Create an app user for the application usage
@@ -47,4 +46,5 @@ ENV SERVICE_IP=0.0.0.0:${SERVICE_PORT}
 USER app
 
 #Run api code
-ENTRYPOINT [ "python", "main.py", "--mode", "serving" ] 
+ENTRYPOINT [ "python3", "main.py", "--mode", "serving" ] 
+# CMD python3 main.py --mode serving

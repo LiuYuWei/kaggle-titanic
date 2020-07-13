@@ -23,6 +23,6 @@ if __name__ == '__main__':
         train_eval_app = TrainEvalApp()
         train_eval_app.start(args.model)
     elif args.mode == "serving":
-        uvicorn.run('main:app')
+        uvicorn.run('main:app', host='0.0.0.0')
     else:
         sys.exit(1)
